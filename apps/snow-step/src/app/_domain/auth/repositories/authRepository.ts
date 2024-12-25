@@ -13,3 +13,14 @@ export const authenticateWithCode = async (code: string): Promise<string> => {
   const authHeader = response.headers.get("Authorization");
   return extractBearerToken(authHeader);
 };
+
+export const refreshAccessToken = async (): Promise<string> => {
+  const response = await fetch('http://localhost:3000/auth/refresh', {
+    credentials: 'include',
+  });
+  
+  if (!response.ok) throw new Error('Failed to refresh token');
+  
+  const authHeader = response.headers.get("Authorization");
+  return extractBearerToken(authHeader);
+};

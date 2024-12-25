@@ -1,6 +1,6 @@
 import { Flex, Heading } from "@radix-ui/themes";
-import { AuthButton } from './_components/AuthButton';
-import { Header } from './_components/Header';
+import { AuthButton } from '../_components/AuthButton';
+import { Header } from '../_components/Header';
 
 export default function Home() {
   return (

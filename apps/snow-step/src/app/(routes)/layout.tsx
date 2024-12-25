@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "@radix-ui/themes/styles.css";
 import { Flex, Theme } from "@radix-ui/themes";
+import { AuthInitializer } from '@/app/_domain/auth/components/AuthInitializer';
 
 export const metadata: Metadata = {
   title: "Snow Step",
@@ -15,7 +16,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Theme>{children}</Theme>
+        <Theme>
+          <AuthInitializer />
+          {children}
+        </Theme>
       </body>
     </html>
   );

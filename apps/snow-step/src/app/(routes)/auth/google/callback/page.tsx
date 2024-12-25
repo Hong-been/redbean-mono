@@ -1,19 +1,19 @@
 "use client"
-import React, { useEffect } from 'react';
+import { useAuth } from '@/app/_domain/auth/hooks/useAuth';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { authenticateWithCode } from '@/domain/auth/repositories/authRepository';
+import { useEffect } from 'react';
 
 const GoogleCallback = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const { handleAuthentication } = useAuth();
 
   useEffect(() => {
     const handleGoogleCallback = async () => {
       const code = searchParams.get('code');
       if (code) {
         try {
-          const token = await authenticateWithCode(code);
-          localStorage.setItem("ss-token", token);
+          await handleAuthentication(code);
           router.replace('/');
         } catch (error) {
           console.error('Callback error:', error);
@@ -23,14 +23,9 @@ const GoogleCallback = () => {
     };
 
     handleGoogleCallback();
-  }, [router, searchParams]);
+  }, [router, searchParams, handleAuthentication]);
 
-  return (
-    <div>
-      <h2>Processing Authentication...</h2>
-      <p>Please wait while we handle the authentication.</p>
-    </div>
-  );
+  return null; // or loading indicator
 };
 
 export default GoogleCallback;
