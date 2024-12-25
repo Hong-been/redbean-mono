@@ -1,19 +1,18 @@
 "use client";
 
-export const Header = () => {
+import { Flex, Heading } from '@radix-ui/themes';
+
+export const Header = ({
+  children
+}: {
+  children: React.ReactNode
+}) => {
   return (
     <header>
-      <button
-        className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-      >
-        {localStorage.getItem("ss-token")? "Hello user!" : `Login →`}
-      </button>
-      {localStorage?.getItem("ss-token") ? <button
-        className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-        onClick={()=>localStorage.removeItem("ss-token")}
-      >
-        Logout
-      </button> : null}
+      <Flex justify={"between"}>
+      <Heading>Snow Step</Heading>
+      {children}
+      </Flex>
     </header>
   )
 }

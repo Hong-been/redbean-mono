@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import "@radix-ui/themes/styles.css";
+import { Flex, Theme } from "@radix-ui/themes";
 
 export const metadata: Metadata = {
   title: "Snow Step",
@@ -14,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        {children}
+        <Theme>{children}</Theme>
       </body>
     </html>
   );
